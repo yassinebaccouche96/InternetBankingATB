@@ -1,0 +1,85 @@
+<section class="accountdetails text-left">
+	<b-card no-body class="mb-1">
+		<b-card-header header-tag="header" class="p-1" role="tab">
+			<b-button block href="#" v-b-toggle.accounts-details variant="info" class="header-nav text-left">
+				Detail des comptes
+			</b-button>
+		</b-card-header>
+		<b-collapse id="accordion-accounts-details" visible accordion="accounts-details" role="tabpanel">
+			<b-card-body>
+				<b-row class="my-1">
+					<b-col sm="3">
+						<label class="font-weight-bolder" for="select-account">Numéro de compte</label>
+					</b-col>
+					<b-col sm="9">
+						<b-form-select id="select-account" v-model="selectedAccount" :options="accountsToSelect"
+							@change="loadSelectedAccount" required></b-form-select>
+					</b-col>
+				</b-row>
+				<hr>
+				<b-row class="my-1">
+					<b-col sm="3">
+						<p class="font-weight-bolder">Type de compte:</p>
+					</b-col>
+					<b-col sm="9">
+						<p>{{selectedAccount.accountType}}</p>
+					</b-col>
+				</b-row>
+
+				<b-row class="my-1">
+					<b-col sm="3">
+						<p class="font-weight-bolder">Solde Actuel:</p>
+					</b-col>
+					<b-col sm="9">
+						<p>{{selectedAccount.balance}}</p>
+					</b-col>
+				</b-row>
+
+				<b-row class="my-1">
+					<b-col sm="3">
+						<p class="font-weight-bolder">Devise de compte</p>
+					</b-col>
+					<b-col sm="9">
+						<p>{{selectedAccount.currency}}</p>
+					</b-col>
+				</b-row>
+
+				<b-row class="my-1">
+					<b-col sm="3">
+						<p class="font-weight-bolder">Solde disponible</p>
+					</b-col>
+					<b-col sm="9">
+						<p>{{selectedAccount.balance}}</p>
+					</b-col>
+				</b-row>
+
+				<b-row class="my-1">
+					<b-col sm="3">
+						<p class="font-weight-bolder">Taux d'interet débiteur:</p>
+					</b-col>
+					<b-col sm="9">
+						<p v-if="selectedAccount.debtorInterestRate != null">{{debtorInterestRate}}%</p>
+					</b-col>
+				</b-row>
+
+				<b-row class="my-1">
+					<b-col sm="3">
+						<p class="font-weight-bolder">Date d'ouverture du compte:</p>
+					</b-col>
+					<b-col sm="9">
+						<p>{{selectedAccount.creationDate}}</p>
+					</b-col>
+				</b-row>
+				<hr>
+				<b-row>
+					<b-col sm="12">
+						<v-client-table :data="transactionTableData" :columns="transactionTableColumns" :options="options">
+						</v-client-table>
+					</b-col>
+				</b-row>
+			</b-card-body>
+		</b-collapse>
+	</b-card>
+
+
+</section>

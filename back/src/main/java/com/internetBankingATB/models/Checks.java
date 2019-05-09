@@ -18,7 +18,7 @@ public class Checks {
 	private CheckType checkType;
 
 	@ManyToOne
-	private User client;
+	private ApplicationUser client;
 
 	private Date deliveryDate;
 
@@ -45,11 +45,11 @@ public class Checks {
 		this.checkType = checkType;
 	}
 
-	public User getClient() {
+	public ApplicationUser getClient() {
 		return client;
 	}
 
-	public void setClient(User client) {
+	public void setClient(ApplicationUser client) {
 		this.client = client;
 	}
 

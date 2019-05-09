@@ -1,0 +1,29 @@
+<section class="card-operation-history text-left">
+	<b-card no-body class="mb-1">
+		<b-card-header header-tag="header" class="p-1" role="tab">
+			<b-button block href="#" v-b-toggle.accounts-details variant="info" class="header-nav text-left">
+				Historique des operations
+			</b-button>
+		</b-card-header>
+		<b-collapse id="accordion-accounts-details" visible accordion="accounts-details" role="tabpanel">
+			<b-card-body>
+				<b-row class="my-1">
+					<b-col sm="3">
+						<label class="font-weight-bolder" for="select-account">Numéro de compte</label>
+					</b-col>
+					<b-col sm="9">
+						<b-form-select id="select-account" v-model="selectedAccount" :options="accounts" @change="loadTransactions"
+							required></b-form-select>
+					</b-col>
+				</b-row>
+				<hr>
+				<b-row class="my-1">
+					<b-col sm="12">
+						<v-client-table :data="transactionTableData" :columns="transactionTableColumns" :options="options">
+						</v-client-table>
+					</b-col>
+				</b-row>
+			</b-card-body>
+		</b-collapse>
+	</b-card>
+</section>

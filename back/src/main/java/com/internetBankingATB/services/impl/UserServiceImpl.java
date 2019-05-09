@@ -1,40 +1,51 @@
 package com.internetBankingATB.services.impl;
 
+import com.internetBankingATB.models.ApplicationUser;
+import com.internetBankingATB.repositories.UserRepository;
+import com.internetBankingATB.services.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
+
 import java.util.Date;
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import com.internetBankingATB.models.User;
-import com.internetBankingATB.repositories.UserRepository;
-import com.internetBankingATB.services.UserService;
-
 @Service
-public class UserServiceImpl implements UserService {
+public class UserServiceImpl implements UserService, UserDetailsService {
 
     @Autowired
     private UserRepository useRepository;
 
     @Override
-    public void addUser(User user) {
+    public void addUser(ApplicationUser user) {
         user.setCreationDate(new Date());
         this.useRepository.save(user);
     }
 
     @Override
-    public void deleteUser(User user) {
+    public void deleteUser(ApplicationUser user) {
         this.useRepository.delete(user);
     }
 
     @Override
-    public User getUserByLogin(String login) {
+    public ApplicationUser getUserByLogin(String login) {
         return this.useRepository.findByLogin(login).stream().findFirst().get();
     }
 
     @Override
-    public List<User> getUsers() {
+    public List<ApplicationUser> getUsers() {
         return this.useRepository.findAll();
     }
 
+    @Override
+    public UserDetails loadUserByUsername(String userLogin) throws UsernameNotFoundException {
+        // continue here
+        List<ApplicationUser> user = this.useRepository.findByLogin(userLogin);
+        if (user == null || user.isEmpty()) {
+            throw new UsernameNotFoundException(userLogin);
+        }
+        return user.get(0);
+    }
 }

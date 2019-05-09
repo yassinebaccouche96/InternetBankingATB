@@ -1,18 +1,14 @@
 package com.internetBankingATB.services;
 
-import java.util.List;
-
 import com.internetBankingATB.models.Transaction;
+
+import java.util.List;
 
 
 public interface TransactionService {
-	
-	void addTransaction(Transaction transaction);
-	
-	void deleteTransaction(Transaction transaction);
-	
-	Transaction getTransactionByid(Long id);
-	
-	List<Transaction> getTransactions();
+
+	List<Transaction> findTransactionByAccountNumber(String accountNumber);
+
+	List<Transaction> findTransactionByAccountNumberAndCardIsNotNull(String accountNumber);
 
 }

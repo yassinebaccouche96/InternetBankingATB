@@ -1,16 +1,17 @@
 package com.internetBankingATB.services;
 
-import java.util.List;
-
 import com.internetBankingATB.models.Account;
+
+import java.util.List;
 
 
 public interface AccountService {
-	
-	void addCompte(Account compte);
-	void deleteCompte(Account compte);
-	Account getCompteBynumerocompte(Long numerocompte);
-	List<Account> getComptes();
-	
+
+    void save(Account account);
+
+    void delete(Account account);
+
+    List<Account> findAccountByUserLogin(String userLogin);
+
 
 }

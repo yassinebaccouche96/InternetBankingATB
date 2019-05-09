@@ -1,35 +1,32 @@
 package com.internetBankingATB.controllers;
 
-import java.util.List;
-
-import org.springframework.beans.factory.annotation.Autowired;
+import com.internetBankingATB.models.Transaction;
+import com.internetBankingATB.services.TransactionService;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.internetBankingATB.models.Transaction;
-import com.internetBankingATB.services.TransactionService;
+import java.util.List;
 
 @RestController
 @RequestMapping(value = "/transaction")
 public class TransactionController {
-	
-	
-	@Autowired
-	TransactionService transactionService;
 
-	@GetMapping(value = "/transaction")
-	public List<Transaction> getTransactions() {
-		return this.transactionService.getTransactions();
-	}
+    private TransactionService transactionService;
 
-	@PostMapping(value="/addTransaction")
-	public void addTransaction(@RequestBody Transaction transaction) {
-		this.transactionService.addTransaction(transaction);
+    public TransactionController(TransactionService transactionService) {
+        this.transactionService = transactionService;
+    }
 
-	}
+    @GetMapping(value = "/transactions/{accountNumber}")
+    public List<Transaction> getTransactionsByAccountNumber(@PathVariable String accountNumber) {
+        return this.transactionService.findTransactionByAccountNumber(accountNumber);
+    }
 
+    @GetMapping(value = "/transactions_done_by_account_card/{accountNumber}")
+    public List<Transaction> getTransactionsDoneByAccountCard(@PathVariable String accountNumber) {
+        return this.transactionService.findTransactionByAccountNumberAndCardIsNotNull(accountNumber);
+    }
 
 }

@@ -1,34 +1,35 @@
 package com.internetBankingATB.controllers;
 
+import com.internetBankingATB.facades.UserAccountFacade;
+import com.internetBankingATB.models.Account;
+import com.internetBankingATB.models.ApplicationUser;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.web.bind.annotation.*;
+
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-import com.internetBankingATB.models.Account;
-
-import com.internetBankingATB.services.AccountService;
-
 @RestController
-@RequestMapping(value = "/compte")
+@RequestMapping(value = "/account")
 public class AccountController {
 
-	@Autowired
-	AccountService AccountService;
+    private UserAccountFacade userAccountFacade;
 
-	@GetMapping(value = "/compte")
-	public List<Account> getComptes() {
-		return this.AccountService.getComptes();
-	}
+    public AccountController(UserAccountFacade userAccountFacade) {
+        this.userAccountFacade = userAccountFacade;
+    }
 
-	@PostMapping(value = "/addCompte")
-	public void addUser(@RequestBody Account compte) {
-		this.AccountService.addCompte(compte);
+    @PostMapping(value = "/add")
+    public void addUser(@RequestBody Account account, @AuthenticationPrincipal final String userName) {
+        this.userAccountFacade.addAccount(account, userName);
+    }
 
-	}
+    @GetMapping(value = "/user/accounts")
+    public ResponseEntity<List<Account>> getUserAccounts(@AuthenticationPrincipal final String userName) {
+        List<Account> userAccounts = this.userAccountFacade.findAccountByUserLogin(userName);
+        return new ResponseEntity<>(userAccounts, HttpStatus.OK);
+    }
 
 }

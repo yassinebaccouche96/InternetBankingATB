@@ -1,102 +1,40 @@
 package com.internetBankingATB.models;
 
-import java.util.Collection;
-import java.util.Date;
-import java.util.List;
+import lombok.Data;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import java.io.Serializable;
+import java.math.BigDecimal;
+import java.util.Date;
 
 @Entity
-public class Transaction {
+@Data
+public class Transaction implements Serializable {
 
-	@Id
-	@GeneratedValue
-	private Long id;
+    @Id
+    @GeneratedValue
+    private Long id;
 
-	// FIXME do Enum
-	private String transactionType;
+    // FIXME do Enum
+    private String transactionType;
 
-	private Date transactionDate;
+    private Date transactionDate;
 
-	private Double amount;
+    private BigDecimal amount;
 
-	@ManyToOne
-	private Account accountSender;
+    private String description;
 
-	@ManyToOne
-	private Account accountReceiver;
+    private String ribAccountSenderOrReceive;
 
-	public Long getId() {
-		return id;
-	}
+    @ManyToOne
+    private Account account;
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    @ManyToOne
+    private Card card;
 
-	public String getTransactionType() {
-		return transactionType;
-	}
-
-	public void setTransactionType(String transactionType) {
-		this.transactionType = transactionType;
-	}
-
-	public Date getTransactionDate() {
-		return transactionDate;
-	}
-
-	public void setTransactionDate(Date transactionDate) {
-		this.transactionDate = transactionDate;
-	}
-
-	public Double getAmount() {
-		return amount;
-	}
-
-	public void setAmount(Double amount) {
-		this.amount = amount;
-	}
-
-	public Account getAccountSender() {
-		return accountSender;
-	}
-
-	public void setAccountSender(Account accountSender) {
-		this.accountSender = accountSender;
-	}
-
-	public Account getAccountReceiver() {
-		return accountReceiver;
-	}
-
-	public void setAccountReceiver(Account accountReceiver) {
-		this.accountReceiver = accountReceiver;
-	}
-
-	public List<Transaction> findAll() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public Collection<Transaction> findByid(Long id2) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	public void delete(Transaction transaction) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	 public void save(Transaction transaction) {
-		// TODO Auto-generated method stub
-		
-	}
-
-	
+    private BigDecimal accountBalance;
 
 }

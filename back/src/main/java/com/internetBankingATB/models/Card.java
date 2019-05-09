@@ -1,27 +1,31 @@
 
 package com.internetBankingATB.models;
 
+import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 
 import com.internetBankingATB.enums.CardType;
+import lombok.Data;
 
 @Entity
-public class Card {
+@Data
+public class Card implements Serializable {
+
+	private static final long serialVersionUID = 4783563038595505081L;
 
 	@Id
 	@GeneratedValue
 	private Long id;
 
-	private Integer cardNumber;
+	private String cardNumber;
 
 	private CardType cardType;
 
-	// TODO add account number
+	// TODO save account number
 
 	// plafond
 	private Long ceiling;
@@ -34,8 +38,10 @@ public class Card {
 	// FIXME enum for action: differed or immediate
 	private String action;
 
+	private BigDecimal usedAmount;
+
 	@ManyToOne
-	private User client;
+	private ApplicationUser client;
 
 	// date echeance
 	private Date deadline;
@@ -43,92 +49,7 @@ public class Card {
 	@ManyToOne
 	private Account account;
 
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
-	public int getNumcarte() {
-		return cardNumber;
-	}
-
-	public void setNumcarte(int numcarte) {
-		this.cardNumber = numcarte;
-	}
-
-	public Integer getCardNumber() {
-		return cardNumber;
-	}
-
-	public void setCardNumber(Integer cardNumber) {
-		this.cardNumber = cardNumber;
-	}
-
-	public CardType getCardType() {
-		return cardType;
-	}
-
-	public void setCardType(CardType cardType) {
-		this.cardType = cardType;
-	}
-
-	public Long getCeiling() {
-		return ceiling;
-	}
-
-	public void setCeiling(Long ceiling) {
-		this.ceiling = ceiling;
-	}
-
-	public Date getExpirationDate() {
-		return expirationDate;
-	}
-
-	public void setExpirationDate(Date expirationDate) {
-		this.expirationDate = expirationDate;
-	}
-
-	public String getStatus() {
-		return status;
-	}
-
-	public void setStatus(String status) {
-		this.status = status;
-	}
-
-	public String getAction() {
-		return action;
-	}
-
-	public void setAction(String action) {
-		this.action = action;
-	}
-
-	public User getClient() {
-		return client;
-	}
-
-	public void setClient(User client) {
-		this.client = client;
-	}
-
-	public Date getDeadline() {
-		return deadline;
-	}
-
-	public void setDeadline(Date deadline) {
-		this.deadline = deadline;
-	}
-
-	public Account getAccount() {
-		return account;
-	}
-
-	public void setAccount(Account account) {
-		this.account = account;
-	}
+	@OneToMany
+	private List<Transaction> transactions;
 
 }

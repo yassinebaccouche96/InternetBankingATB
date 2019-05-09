@@ -1,0 +1,108 @@
+<section>
+	<div class="accout">
+		<b-breadcrumb :items="items"></b-breadcrumb>
+		<div>
+			<b-tabs content-class="mt-3">
+				<b-tab title="Mes Cartes" active>
+					<b-card no-body class="mb-1">
+						<b-card-header header-tag="header" class="p-1" role="tab">
+							<b-button block href="#" v-b-toggle.accordion-cards variant="info"
+								class="header-nav text-left">
+								Mes Cartes
+							</b-button>
+						</b-card-header>
+						<b-collapse id="accordion-cards" visible accordion="cards" role="tabpanel">
+							<b-card-body>
+								<b-row class="my-1">
+									<b-col sm="3">
+										<label class="font-weight-bolder" for="select-account">Numéro de compte</label>
+									</b-col>
+									<b-col sm="9">
+										<b-form-select id="select-account" v-model="selectedAccount"
+											:options="accountsToSelect" @change="loadCard" required></b-form-select>
+									</b-col>
+								</b-row>
+								<hr>
+								<b-row>
+									<b-col sm="12">
+										<v-client-table :data="cardsTableData" :columns="columns" :options="options"
+											@row-click="rowClicked">
+										</v-client-table>
+									</b-col>
+								</b-row>
+							</b-card-body>
+						</b-collapse>
+					</b-card>
+				</b-tab>
+				<b-tab title="Historiques des Operations">
+					<card-operation-history v-bind:accounts="accountsToSelect"></card-operation-history>
+				</b-tab>
+				<div>
+					<b-modal id="card-details" title="Details de la carte" size="xl">
+						<b-row class="my-1">
+							<b-col sm="6">
+								<b-row class="my-1">
+									<b-col sm="4">
+										<p class="font-weight-bolder">Numéro:</p>
+									</b-col>
+									<b-col sm="8">
+										<p>XXX9922233333</p>
+									</b-col>
+								</b-row>
+
+								<b-row class="my-1">
+									<b-col sm="4">
+										<p class="font-weight-bolder">Type</p>
+									</b-col>
+									<b-col sm="8">
+										<p>National Visa</p>
+									</b-col>
+								</b-row>
+
+								<b-row class="my-1">
+									<b-col sm="4">
+										<p class="font-weight-bolder">Date d'éxpiration</p>
+									</b-col>
+									<b-col sm="8">
+										<p>22/04/2022</p>
+									</b-col>
+								</b-row>
+
+								<b-row class="my-1">
+									<b-col sm="4">
+										<p class="font-weight-bolder">Date d'émission</p>
+									</b-col>
+									<b-col sm="8">
+										<p>22/04/2018</p>
+									</b-col>
+								</b-row>
+
+								<b-row class="my-1">
+									<b-col sm="4">
+										<p class="font-weight-bolder">Statut</p>
+									</b-col>
+									<b-col sm="8">
+										<p>Opposition</p>
+									</b-col>
+								</b-row>
+
+								<b-row class="my-1">
+									<b-col sm="4">
+										<p class="font-weight-bolder">Numéro de Compte</p>
+									</b-col>
+									<b-col sm="8">
+										<p>123445588</p>
+									</b-col>
+								</b-row>
+
+							</b-col>
+							<b-col sm="6">
+								<commit-chart :height="200"/>
+							</b-col>
+						</b-row>
+					</b-modal>
+				</div>
+			</b-tabs>
+		</div>
+	</div>
+</section>

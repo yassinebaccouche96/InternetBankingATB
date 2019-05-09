@@ -1,5 +1,34 @@
-
-<section class="account">
-  <h1>account Component</h1>
+<section>
+	<div class="accout">
+		<b-breadcrumb :items="items"></b-breadcrumb>
+		<div>
+			<b-tabs content-class="mt-3">
+				<b-tab title="Mes Comptes" active>
+					<b-card no-body class="mb-1">
+						<b-card-header header-tag="header" class="p-1" role="tab">
+							<b-button 
+							block href="#" 
+							v-b-toggle.accordion-accounts variant="info"
+							class="header-nav text-left">
+							Mes Comptes
+							</b-button>
+						</b-card-header>
+						<b-collapse id="accordion-accounts" visible accordion="accounts" role="tabpanel">
+							<b-card-body>
+								<v-client-table :data="accountsTableData" :columns="columns" :options="options"
+									@row-click="rowClicked">
+								</v-client-table>
+							</b-card-body>
+						</b-collapse>
+					</b-card>
+				</b-tab>
+				<b-tab title="Details">
+					<account-details v-bind:accounts="accountsTableData"></account-details>
+				</b-tab>
+				<b-tab title="Historiques des Operations">
+					<operation-history></operation-history>
+				</b-tab>
+			</b-tabs>
+		</div>
+	</div>
 </section>
-

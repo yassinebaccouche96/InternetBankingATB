@@ -2,14 +2,14 @@ package com.internetBankingATB.services;
 
 import java.util.List;
 
-import com.internetBankingATB.models.User;
+import com.internetBankingATB.models.ApplicationUser;
 
 public interface UserService {
 	
-	void addUser(User user);
-	void deleteUser(User user);
-	User getUserByLogin(String login);
-	List<User> getUsers();
+	void addUser(ApplicationUser user);
+	void deleteUser(ApplicationUser user);
+	ApplicationUser getUserByLogin(String login);
+	List<ApplicationUser> getUsers();
 	
 
 }

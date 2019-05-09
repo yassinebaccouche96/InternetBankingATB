@@ -1,38 +1,27 @@
 package com.internetBankingATB.services.impl;
 
-import java.util.List;
-
+import com.internetBankingATB.models.Transaction;
+import com.internetBankingATB.repositories.TransactionRepository;
+import com.internetBankingATB.services.TransactionService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.internetBankingATB.models.Transaction;
-import com.internetBankingATB.repositories.TransactionRepositrory;
-import com.internetBankingATB.services.TransactionService;
+import java.util.List;
 
 @Service
 public class TransactionServicelmpl implements TransactionService {
 
-	@Autowired
-	private TransactionRepositrory transactionRepository;
+    @Autowired
+    private TransactionRepository transactionRepository;
 
-	@Override
-	public void addTransaction(Transaction transaction) {
-		this.transactionRepository.save(transaction);
-	}
+    @Override
+    public List<Transaction> findTransactionByAccountNumber(String accountNumber) {
+        return this.transactionRepository.findTransactionByAccount_AccountNumberOrderByTransactionDate(accountNumber);
+    }
 
-	@Override
-	public void deleteTransaction(Transaction transaction) {
-		this.transactionRepository.delete(transaction);
-	}
-
-	@Override
-	public Transaction getTransactionByid(Long id) {
-		return this.transactionRepository.findById(id).get();
-	}
-
-	@Override
-	public List<Transaction> getTransactions() {
-		return this.transactionRepository.findAll();
-	}
+    @Override
+    public List<Transaction> findTransactionByAccountNumberAndCardIsNotNull(String accountNumber) {
+        return this.transactionRepository.findTransactionByAccount_AccountNumberAndCardIsNotNull(accountNumber);
+    }
 
 }
