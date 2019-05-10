@@ -3,7 +3,9 @@ export default {
   components: {},
   props: [],
   data() {
-    return {};
+    return {
+      userRole: localStorage.getItem("user-role")
+    };
   },
   computed: {},
   mounted() {},

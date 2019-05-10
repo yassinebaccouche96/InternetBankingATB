@@ -1,31 +1,16 @@
 <section class="auth">
-	<div class="auth__form">
-		<!-- <form id="auth_forms" @submit.prevent="actionButton">
-				<button type="submit">test button</button>
-		</form>  -->
-
-		<!-- <button type="submit" @click.prevent="actionButton()">test button</button> -->
-		
-
-		<!-- <form @submit="onSubmit" @reset="onReset"> -->
-		<form @submit.prevent="onSubmit">
-		<!-- <b-form-group id="input-group-1" label="Email" label-for="input-1"
-				description="We'll never share your email with anyone else."> -->
-		<b-form-group id="input-group-1" label="Email" label-for="input-1">
-				<b-form-input id="input-1" v-model="user.userName" required placeholder="Email"></b-form-input>
-			</b-form-group>
-
-			<b-form-group id="input-group-2" label="Mot de Passe" label-for="input-2">
-				<b-form-input id="input-2" type="password" v-model="user.password" required placeholder="pwd">
-				</b-form-input>
-			</b-form-group>
-
-
-		<b-button type="submit" variant="primary">Valider</b-button>
-		<!-- <b-button type="reset" variant="danger">Reset</b-button> -->
-		</form>
-		<!-- <b-card class="mt-3" header="Form Data Result">
-			<pre class="m-0">{{ form }}</pre>
-		</b-card> -->
-	</div>
+		<b-card class="auth__card" header="Internet Banking ATB" header-tag="header" footer="© ATB" footer-tag="footer" title="Authentification">
+			<div class="auth__form">
+				<form @submit.prevent="onSubmit">
+					<b-form-group id="input-group-1" label="Login" label-for="input-login" text-left>
+						<b-form-input id="input-login" v-model="user.userName" required placeholder="Login"></b-form-input>
+					</b-form-group>
+					<b-form-group id="input-group-2" label="Mot de Passe" label-for="input-pwd" text-left>
+						<b-form-input id="input-pwd" type="password" v-model="user.password" required placeholder="pwd">
+						</b-form-input>
+					</b-form-group>
+					<b-button type="submit" variant="primary">Valider</b-button>
+				</form>
+			</div>
+		</b-card>
 </section>

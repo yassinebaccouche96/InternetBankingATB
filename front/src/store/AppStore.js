@@ -46,8 +46,9 @@ const actions = {
       AppService.postJson(AuthEndPoint.loginEndPoint, user)
         .then(resp => {
           const token = resp.headers.authorization;
-          // this.currentUser = resp.data;
+          const role = resp.headers.role;
           localStorage.setItem("user-token", token);
+          localStorage.setItem("user-role", role);
           commit("AUTH_SUCCESS", token);
           resolve(resp);
         })
@@ -62,6 +63,7 @@ const actions = {
     return new Promise(resolve => {
       commit("AUTH_LOGOUT");
       localStorage.removeItem("user-token");
+      localStorage.removeItem("user-role");
       // remove the axios default header
       delete axios.defaults.headers.common["Authorization"];
       resolve();

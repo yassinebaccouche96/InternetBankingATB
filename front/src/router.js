@@ -54,6 +54,16 @@ export default new Router({
         import(/* webpackChunkName: "card" */ "./components/card"),
       beforeEnter: AuthGuard
     },
+    {
+      path: "/client",
+      name: "client",
+      // route level code-splitting
+      // this generates a separate chunk (about.[hash].js) for this route
+      // which is lazy-loaded when the route is visited.
+      component: () =>
+        import(/* webpackChunkName: "card" */ "./components/client"),
+      beforeEnter: AuthGuard
+    },
     { path: "*", redirect: "/auth" }
   ]
 });

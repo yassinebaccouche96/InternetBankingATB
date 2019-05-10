@@ -8,8 +8,8 @@ export default {
   data() {
     return {
       user: {
-        userName: "yahia",
-        password: "yahia"
+        userName: "",
+        password: ""
       }
     };
   },
