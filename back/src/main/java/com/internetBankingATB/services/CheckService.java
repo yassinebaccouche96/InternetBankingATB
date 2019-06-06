@@ -1,20 +1,19 @@
 package com.internetBankingATB.services;
 
+import com.internetBankingATB.enums.CheckType;
+import com.internetBankingATB.models.Checks;
+
 import java.util.List;
-
-import org.hibernate.annotations.Check;
-
-
-
-
 
 
 public interface CheckService {
 
-	void addCheck(Check check);
-	void deleteCheck(Check check);
-	Check getCheckBycheckNumber(Integer checkNumber);
-	List<Check> getChecks();
-	
+    List<Checks> findByClientNameAndAccountNumber(final String clientName, final String accountNumber);
+
+    List<Checks> findByClientName(final String clientName);
+
+    void add(Checks check);
+
+    List<CheckType> findCheckTypes();
 
 }

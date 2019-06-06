@@ -1,0 +1,101 @@
+<section>
+    <div class="check">
+      <b-breadcrumb :items="items"></b-breadcrumb>
+      <div>
+        <b-tabs content-class="mt-3">
+          <b-tab title="Mes chequiers" active>
+            <b-card no-body class="mb-1">
+              <b-card-header header-tag="header" class="p-1" role="tab">
+                <b-button block href="#" v-b-toggle.accordion-checks variant="info"
+                  class="header-nav text-left">
+                  Mes chequiers
+                </b-button>
+              </b-card-header>
+              <b-collapse id="accordion-checks" visible accordion="checks" role="tabpanel">
+                <b-card-body>
+                  <b-row class="my-1">
+                    <b-col sm="3">
+                      <label class="font-weight-bolder" for="select-account">Mes Chequiers</label>
+                    </b-col>
+                    <b-col sm="9">
+                      <b-form-select id="select-check" v-model="selectedCheck"
+                        :options="checksToSelect" @change="loadSelectedCheck" required></b-form-select>
+                    </b-col>
+                  </b-row>
+                  <hr>
+                  <b-row>
+                    <b-col sm="12">
+                        <b-row class="my-1">
+                          <b-col sm="3">
+                            <p class="font-weight-bolder">Type de cheque</p>
+                          </b-col>
+                          <b-col sm="4">
+                            <p>{{ selectedCheck.checkType }}</p>
+                          </b-col>
+                        </b-row>
+                
+                        <b-row class="my-1">
+                          <b-col sm="3">
+                            <p class="font-weight-bolder">Date de delivrance</p>
+                          </b-col>
+                          <b-col sm="4">
+                            <p>{{ selectedCheck.deliveryDate }}</p>
+                          </b-col>
+                        </b-row>
+
+                        <b-row class="my-1">
+                            <b-col sm="3">
+                              <p class="font-weight-bolder">Numéro de compte</p>
+                            </b-col>
+                            <b-col sm="4">
+                              <p>{{ selectedCheck.account.accountNumber }}</p>
+                            </b-col>
+                        </b-row>
+
+                        <b-row class="my-1">
+                            <b-col sm="9">
+                              
+                            </b-col>
+                              <b-col sm="3">
+                                  <b-button size="sm" variant="outline-primary" @click="openNewCheckModalRequest">
+                                    Demander un nouveau chequier
+                                  </b-button>
+                              </b-col>
+                        </b-row>
+                    </b-col>
+                  </b-row>
+                </b-card-body>
+              </b-collapse>
+            </b-card>
+          </b-tab>
+          <div>
+            <b-modal id="check-request" 
+                     title="Demander un nouveau chequier" 
+                     size="xl"
+                     @ok="checkRequest">
+              <b-col sm="12">
+                <b-row class="my-1">
+                  <b-col sm="3">
+                    <label class="font-weight-bolder" for="select-account">Veuillez sellectionez un compte</label>
+                  </b-col>
+                  <b-col sm="9">
+                    <b-form-select id="select-account" v-model="selectedAccount" :options="accountsToSelect"
+                      @change="loadSelectedAccount" required></b-form-select>
+                  </b-col>
+                </b-row>
+                <b-row class="my-1">
+                    <b-col sm="3">
+                      <label class="font-weight-bolder" for="select-check-types">Veuillez sellectionez un type de cheque</label>
+                    </b-col>
+                    <b-col sm="9">
+                      <b-form-select id="select-check-types" v-model="selectedCheckType" :options="checkTypes" required></b-form-select>
+                    </b-col>
+                  </b-row>
+              </b-col>
+            </b-modal>
+          </div>
+        </b-tabs>
+      </div>
+    </div>
+  </section>
+  

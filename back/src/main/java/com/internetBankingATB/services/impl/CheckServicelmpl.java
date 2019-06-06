@@ -1,51 +1,43 @@
 package com.internetBankingATB.services.impl;
 
-import java.util.List;
-//import java.util.Optional;
-
-import org.hibernate.annotations.Check;
-import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.data.domain.Example;
-//import org.springframework.data.domain.Page;
-//import org.springframework.data.domain.Pageable;
-//import org.springframework.data.domain.Sort;
-import org.springframework.stereotype.Service;
-
-//import com.internetBankingATB.models.Card;
-//import com.internetBankingATB.models.Checks;
+import com.internetBankingATB.enums.CheckType;
+import com.internetBankingATB.models.Checks;
 import com.internetBankingATB.repositories.CheckRepository;
 import com.internetBankingATB.services.CheckService;
+import org.springframework.stereotype.Service;
+
+import java.util.Arrays;
+import java.util.List;
 
 @Service
 public class CheckServicelmpl implements CheckService {
 
-	@Autowired
-	private CheckRepository checkRepository;
+    private CheckRepository checkRepository;
 
-	@Override
-	public void addCheck(Check check) {
-		// TODO Auto-generated method stub
-		
-	}
+    public CheckServicelmpl(CheckRepository checkRepository) {
+        this.checkRepository = checkRepository;
+    }
 
-	@Override
-	public void deleteCheck(Check check) {
-		// TODO Auto-generated method stub
-		
-	}
 
-	@Override
-	public Check getCheckBycheckNumber(Integer checkNumber) {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    @Override
+    public List<Checks> findByClientNameAndAccountNumber(final String clientName, final String accountNumber) {
+        return this.checkRepository.findByClient_UserNameAndAccount_AccountName(clientName, accountNumber);
+    }
 
-	@Override
-	public List<Check> getChecks() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+    @Override
+    public List<Checks> findByClientName(String clientName) {
+        return this.checkRepository.findByClient_UserNameAndActivatedTrue(clientName);
+    }
 
+    @Override
+    public void add(Checks check) {
+        this.checkRepository.save(check);
+    }
+
+    @Override
+    public List<CheckType> findCheckTypes() {
+        return Arrays.asList(CheckType.values());
+    }
 
 
 }

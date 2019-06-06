@@ -1,88 +1,40 @@
 package com.internetBankingATB.models;
 
-import java.sql.Date;
-
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-
 import com.internetBankingATB.enums.CheckType;
+import lombok.Getter;
+import lombok.Setter;
+
+import javax.persistence.*;
+import java.sql.Date;
+import java.util.List;
 
 @Entity
+@Getter
+@Setter
 public class Checks {
 
-	@Id
-	@GeneratedValue
-	private Long id;
-	private CheckType checkType;
+    @Id
+    @GeneratedValue
+    private Long id;
 
-	@ManyToOne
-	private ApplicationUser client;
+    private CheckType checkType;
 
-	private Date deliveryDate;
+    @ManyToOne
+    private ApplicationUser client;
 
-	private Integer startNum;
+    private Date deliveryDate;
 
-	private Integer endNum;
+    private Integer startNum;
 
-	@ManyToOne
-	private Account account;
+    private Integer endNum;
 
-	public Long getId() {
-		return id;
-	}
+    @ManyToOne
+    private Account account;
 
-	public void setId(Long id) {
-		this.id = id;
-	}
+    private Boolean activated;
 
-	public CheckType getCheckType() {
-		return checkType;
-	}
+    @OneToMany
 
-	public void setCheckType(CheckType checkType) {
-		this.checkType = checkType;
-	}
-
-	public ApplicationUser getClient() {
-		return client;
-	}
-
-	public void setClient(ApplicationUser client) {
-		this.client = client;
-	}
-
-	public Date getDeliveryDate() {
-		return deliveryDate;
-	}
-
-	public void setDeliveryDate(Date deliveryDate) {
-		this.deliveryDate = deliveryDate;
-	}
-
-	public Integer getStartNum() {
-		return startNum;
-	}
-
-	public void setStartNum(Integer startNum) {
-		this.startNum = startNum;
-	}
-
-	public Integer getEndNum() {
-		return endNum;
-	}
-
-	public void setEndNum(Integer endNum) {
-		this.endNum = endNum;
-	}
-
-	public Account getAccount() {
-		return account;
-	}
-
-	public void setAccount(Account account) {
-		this.account = account;
-	}
+    private List<ClientRequest> checkRequests;
 
 }

@@ -98,7 +98,6 @@ export default {
       });
     },
     loadCard() {
-      console.log(this.selectedAccount);
       AppService.get(
         CardEndPoints.accountCardEndPoint +
           "/" +

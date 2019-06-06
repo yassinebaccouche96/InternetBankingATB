@@ -13,6 +13,8 @@
         <b-navbar-nav>
           <b-nav-item to="/accounts" v-if="userRole == '[ROLE_USER]'">Mes Comptes</b-nav-item>
           <b-nav-item to="/cards" v-if="userRole == '[ROLE_USER]'">Mes Cartes</b-nav-item>
+          <b-nav-item to="/check" v-if="userRole == '[ROLE_USER]'">Mes cheques</b-nav-item>
+          <b-nav-item to="/transfer" v-if="userRole == '[ROLE_USER]'">Virements</b-nav-item>
           <b-nav-item-dropdown v-if="userRole == '[ROLE_ADMIN]'">
               <template slot="button-content">
                 <em>Gestion des Clients</em>
@@ -20,6 +22,7 @@
               <b-dropdown-item to="/client">Ajouter un nouveau Client</b-dropdown-item>
               <!-- <b-dropdown-item @click="logout()">Déconnexion</b-dropdown-item> -->
             </b-nav-item-dropdown>
+          <b-nav-item to="/manageRequest" v-if="userRole == '[ROLE_ADMIN]'">Demandes</b-nav-item>
         </b-navbar-nav>
 
         <!-- Right aligned nav items -->

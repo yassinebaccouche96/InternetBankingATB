@@ -1,0 +1,74 @@
+<section>
+    <div class="check">
+      <b-breadcrumb :items="items"></b-breadcrumb>
+      <div>
+        <b-tabs content-class="mt-3">
+          <b-tab title="Mes chequiers" active>
+            <b-card no-body class="mb-1">
+              <b-card-header header-tag="header" class="p-1" role="tab">
+                <b-button block href="#" v-b-toggle.accordion-requestes variant="info"
+                  class="header-nav text-left">
+                  Demandes de chequier
+                </b-button>
+              </b-card-header>
+              <b-collapse id="accordion-requestes" visible accordion="requestes" role="tabpanel">
+                <b-card-body>
+                  <b-row class="my-1">
+                    <b-col sm="3">
+                      <label class="font-weight-bolder" for="select-requestes">Demandes de chequiers</label>
+                    </b-col>
+                    <b-col sm="9">
+                      <b-form-select id="select-requestes" v-model="selectedRequeste"
+                        :options="requesteToSelect" @change="loadSelectedRequestes" required></b-form-select>
+                    </b-col>
+                  </b-row>
+                  <hr>
+                  <b-row>
+                    <b-col sm="12">
+                        <!-- <b-row class="my-1">
+                          <b-col sm="3">
+                            <p class="font-weight-bolder">Type de cheque</p>
+                          </b-col>
+                          <b-col sm="4">
+                            <p>{{ selectedCheck.checkType }}</p>
+                          </b-col>
+                        </b-row>
+                
+                        <b-row class="my-1">
+                          <b-col sm="3">
+                            <p class="font-weight-bolder">Date de delivrance</p>
+                          </b-col>
+                          <b-col sm="4">
+                            <p>{{ selectedCheck.deliveryDate }}</p>
+                          </b-col>
+                        </b-row>
+
+                        <b-row class="my-1">
+                            <b-col sm="3">
+                              <p class="font-weight-bolder">Numéro de compte</p>
+                            </b-col>
+                            <b-col sm="4">
+                              <p>{{ selectedCheck.account.accountNumber }}</p>
+                            </b-col>
+                        </b-row>
+
+                        <b-row class="my-1">
+                            <b-col sm="9">
+                              
+                            </b-col>
+                              <b-col sm="3">
+                                  <b-button size="sm" variant="outline-primary" @click="openNewCheckModalRequest">
+                                    Demander un nouveau chequier
+                                  </b-button>
+                              </b-col>
+                        </b-row>-->
+                    </b-col> 
+                  </b-row>
+                </b-card-body>
+              </b-collapse>
+            </b-card>
+          </b-tab>
+        </b-tabs>
+      </div>
+    </div>
+  </section>

@@ -15,8 +15,7 @@ export default new Router({
       // route level code-splitting
       // this generates a separate chunk (about.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () =>
-        import(/* webpackChunkName: "auth" */ "./components/auth")
+      component: () => import("./components/auth")
     },
     {
       path: "/home",
@@ -30,8 +29,7 @@ export default new Router({
       // route level code-splitting
       // this generates a separate chunk (about.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () =>
-        import(/* webpackChunkName: "about" */ "./views/About.vue"),
+      component: () => import("./views/About.vue"),
       beforeEnter: AuthGuard
     },
     {
@@ -40,8 +38,7 @@ export default new Router({
       // route level code-splitting
       // this generates a separate chunk (about.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () =>
-        import(/* webpackChunkName: "account" */ "./components/account"),
+      component: () => import("./components/account"),
       beforeEnter: AuthGuard
     },
     {
@@ -50,8 +47,7 @@ export default new Router({
       // route level code-splitting
       // this generates a separate chunk (about.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () =>
-        import(/* webpackChunkName: "card" */ "./components/card"),
+      component: () => import("./components/card"),
       beforeEnter: AuthGuard
     },
     {
@@ -60,8 +56,34 @@ export default new Router({
       // route level code-splitting
       // this generates a separate chunk (about.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () =>
-        import(/* webpackChunkName: "card" */ "./components/client"),
+      component: () => import("./components/client"),
+      beforeEnter: AuthGuard
+    },
+    {
+      path: "/check",
+      name: "check",
+      // route level code-splitting
+      // this generates a separate chunk (about.[hash].js) for this route
+      // which is lazy-loaded when the route is visited.
+      component: () => import("./components/checks"),
+      beforeEnter: AuthGuard
+    },
+    {
+      path: "/transfer",
+      name: "transfer",
+      // route level code-splitting
+      // this generates a separate chunk (about.[hash].js) for this route
+      // which is lazy-loaded when the route is visited.
+      component: () => import("./components/transfer"),
+      beforeEnter: AuthGuard
+    },
+    {
+      path: "/manageRequest",
+      name: "manageRequest",
+      // route level code-splitting
+      // this generates a separate chunk (about.[hash].js) for this route
+      // which is lazy-loaded when the route is visited.
+      component: () => import("./components/manageRequest"),
       beforeEnter: AuthGuard
     },
     { path: "*", redirect: "/auth" }

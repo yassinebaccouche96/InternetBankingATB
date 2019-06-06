@@ -1,0 +1,89 @@
+<section>
+	<div class="accout">
+		<b-breadcrumb :items="items"></b-breadcrumb>
+		<div>
+			<b-tabs content-class="mt-3">
+				<b-tab title="Entre mes comptes" active>
+					<b-card no-body class="mb-1">
+						<b-card-header header-tag="header" class="p-1" role="tab">
+							<b-button 
+							block href="#" 
+							v-b-toggle.accordion-accounts variant="info"
+							class="header-nav text-left">
+							Virements
+							</b-button>
+						</b-card-header>
+						<b-collapse id="accordion-accounts" visible accordion="accounts" role="tabpanel">
+							<b-card-body>
+								<b-row class="my-1">
+                  <b-col sm="3">
+                    <label class="font-weight-bolder" for="select-account">Du compte</label>
+                  </b-col>
+                  <b-col sm="7">
+                    <b-form-select id="from-select-account" v-model="fromSelectedAccount" :options="accounts"
+                      @change="fromSelectedAccountChange" required></b-form-select>
+                  </b-col>
+                </b-row>
+                <b-row class="my-1">
+                  <b-col sm="3">
+                    <label class="font-weight-bolder" for="select-account">Au compte</label>
+                  </b-col>
+                  <b-col sm="7">
+                    <b-form-select id="to-select-account" v-model="toSelectedAccount" :options="accounts"
+                      @change="toSelectedAccountChange" required></b-form-select>
+                  </b-col>
+                </b-row>
+                <b-row class="my-1">
+                  <b-col sm="3">
+                    <label class="font-weight-bolder" for="transfer-amount">Montant</label>
+                  </b-col>
+                  <b-col sm="3">
+                    <b-form-input id="transfer-amount" v-model="transferAmout" placeholder="Mentant du virement">
+                    </b-form-input>
+                  </b-col>
+                </b-row>
+                <b-row class="my-1">
+                  <b-col sm="3">
+                    <label class="font-weight-bolder" for="transfer-date">Date du virement</label>
+                  </b-col>
+                  <b-col sm="3">
+                    <b-form-input id="transfer-date" v-model="transferDate" type="date">
+                    </b-form-input>
+                  </b-col>
+                </b-row>
+                <b-row class="my-1">
+                  <b-col sm="3">
+                    <label class="font-weight-bolder" for="transfer-note">Remarque</label>
+                  </b-col>
+                  <b-col sm="7">
+                    <b-form-input id="transfer-note" v-model="transferNote" type="text">
+                    </b-form-input>
+                  </b-col>
+                </b-row>
+                <!-- <b-row class="my-1">
+                  
+              </b-row> -->
+              </b-card-body>
+              <b-card-footer>
+                <b-row>
+                    <b-col lg="10" class="pb-2"></b-col>
+                  <b-col lg="1" class="pb-2"><b-button size="sm" variant="success">Valider</b-button></b-col>
+                  <b-col lg="1" class="pb-2"><b-button size="sm" variant="danger">Annuler</b-button></b-col>
+                </b-row>
+              </b-card-footer>
+						</b-collapse>
+					</b-card>
+				</b-tab>
+				<b-tab title="Vers des comptes ATB">
+					to be developped
+				</b-tab>
+				<b-tab title="Vers d'autres comptes en tunisie">
+					to be developped
+        </b-tab>
+        <b-tab title="Vers d'autres comptes à l'etranger">
+					to be developped
+				</b-tab>
+			</b-tabs>
+		</div>
+	</div>
+</section>
